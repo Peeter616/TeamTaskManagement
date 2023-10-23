@@ -1,26 +1,25 @@
 package org.TeamTaskManagement.Task.Model;
 
+import java.util.Set;
 import java.util.UUID;
 import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
+import org.TeamTaskManagement.User.Model.User;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Builder
+@Entity
+@Table(name = "TASK")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Data
 public class Task {
 
     @Id
     @Column(name = "ID", unique = true)
-    @Type(type = "uuid-char")
     private UUID id;
 
     @Column(name = "TITLE")
@@ -35,6 +34,7 @@ public class Task {
     @Column(name = "DEADLINE")
     private LocalDate deadline;
 
+    @ManyToMany
     @Column(name = "USERS")
-    private String users;
+    private Set<User> users;
 }

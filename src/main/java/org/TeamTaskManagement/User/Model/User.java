@@ -1,24 +1,19 @@
 package org.TeamTaskManagement.User.Model;
 
 import lombok.*;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Table(name = "USERS")
-@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Getter
-@Setter
 public class User {
 
     @Id
     @Column(name = "ID", unique = true)
-    @Type(type = "uuid-char")
     private UUID id;
 
     @Column(name = "FIRST_NAME")
